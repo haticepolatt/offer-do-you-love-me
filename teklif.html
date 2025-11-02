@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beni Seviyor Musun?</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      background: linear-gradient(to bottom right, #cf869e, #b5fffc);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #e21460;
+      margin-bottom: 15px;
+    }
+
+    #timer {
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    .btn-container {
+      display: inline-flex;
+      gap: 20px;
+      position: relative;
+    }
+
+    .btn {
+      font-size: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #yesBtn {
+      background-color: #81c784;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #e57373;
+      color: white;
+      position: relative; /* Başlangıçta sabit */
+    }
+
+    #result {
+      font-size: 24px;
+      color: #4caf50;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 500px) {
+      .btn-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Beni Seviyor Musun?🌸</h1>
+  <div id="timer">10</div>
+
+  <div class="btn-container">
+    <button id="yesBtn" class="btn">Evet</button>
+    <button id="noBtn" class="btn">Hayır</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const timerEl = document.getElementById("timer");
+    const result = document.getElementById("result");
+
+    let timeLeft = 10;
+    const timer = setInterval(() => {
+      timeLeft--;
+      timerEl.textContent = timeLeft;
+      if (timeLeft === 0) {
+        clearInterval(timer);
+        result.textContent = "Zaman doldu!😓";
+        yesBtn.disabled = true;
+        noBtn.disabled = true;
+      }
+    }, 1000);
+
+    yesBtn.addEventListener("click", () => {
+      result.textContent = "Ben de seni seviyorum!❤️";
+      clearInterval(timer);
+    });
+
+    noBtn.addEventListener("mouseover", () => {
+      const offsetX = Math.floor(Math.random() * 500 - 100); // -100 ile +100
+      const offsetY = Math.floor(Math.random() * 400 - 50);  // -50 ile +50
+      noBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    });
+  </script>
+
+</body>
+</html>
